@@ -1,6 +1,6 @@
 import { ApplyOptions } from '@sapphire/decorators';
 import { Events, Listener } from '@sapphire/framework';
-import { EmbedBuilder, type Message } from 'discord.js';
+import { type Message } from 'discord.js';
 import { BotPrefix, ChannelIDs } from '#constants';
 import { createCompletion } from '#lib/openai';
 import type { CreateChatCompletionRequestMessage } from 'openai/resources/chat/completions';
@@ -39,11 +39,11 @@ export class UserEvent extends Listener {
 
 		message.reply({
 			content: completion.choices[0].message.content || 'Hey',
-			embeds: [
-				new EmbedBuilder().setFooter({
-					text: `DEBUG: Used ${completion.usage?.total_tokens} total_tokens, ${completion.usage?.prompt_tokens} prompt_tokens and ${completion.usage?.completion_tokens} completion_tokens`
-				})
-			],
+			// embeds: [
+			// 	new EmbedBuilder().setFooter({
+			// 		text: `DEBUG: Used ${completion.usage?.total_tokens} total_tokens, ${completion.usage?.prompt_tokens} prompt_tokens and ${completion.usage?.completion_tokens} completion_tokens`
+			// 	})
+			// ],
 			allowedMentions: {
 				parse: []
 			}
