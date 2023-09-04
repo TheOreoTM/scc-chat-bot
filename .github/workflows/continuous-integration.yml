@@ -30,7 +30,7 @@ jobs:
           host: ${{ secrets.HOST_IP }}
           username: ${{ secrets.HOST_USERNAME }}
           script: |
-            pm2 stop chat-bot
+            pm2 delete chat-bot
             cd /root/scc-chat-bot
             git pull
             yarn install
