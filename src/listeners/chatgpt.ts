@@ -29,6 +29,7 @@ export class UserEvent extends Listener {
 
 			conversationLog.push({
 				role: isBot ? 'assistant' : 'user',
+				name: isBot ? 'me' : message.author.username,
 				content: msg.content.slice(0, 200)
 			});
 		});
