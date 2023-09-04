@@ -37,7 +37,7 @@ export class UserEvent extends Listener {
 		const completion = await createCompletion({ messages: conversationLog, model: 'gpt-3.5-turbo', max_tokens: 50 });
 
 		message.reply({
-			content: completion.choices[0].message.content || 'Hey',
+			content: completion.choices[0].message.content?.toLowerCase()?.replace('skittle-chan:', '') || 'Hey',
 			// embeds: [
 			// 	new EmbedBuilder().setFooter({
 			// 		text: `DEBUG: Used ${completion.usage?.total_tokens} total_tokens, ${completion.usage?.prompt_tokens} prompt_tokens and ${completion.usage?.completion_tokens} completion_tokens`
