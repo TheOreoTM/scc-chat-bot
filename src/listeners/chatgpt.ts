@@ -24,7 +24,6 @@ export class UserEvent extends Listener {
 		prevMessages.forEach((msg) => {
 			if (msg.content.startsWith(BotPrefix)) return;
 			if (msg.author.id !== message.client.user.id && msg.author.bot) return;
-			if (msg.author.id !== message.author.id && msg.author.id !== message.client.user.id) return;
 
 			const isBot = msg.author.id === message.client.user.id;
 
