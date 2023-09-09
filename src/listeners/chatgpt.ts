@@ -8,7 +8,7 @@ import type { CreateChatCompletionRequestMessage } from 'openai/resources/chat/c
 @ApplyOptions<Listener.Options>({ event: Events.MessageCreate })
 export class UserEvent extends Listener {
 	public override async run(message: Message) {
-		if (message.author.bot || !ChannelIDs.includes(message.channel.id) || message.content.startsWith(BotPrefix)) return;
+		if (message.author.bot || !ChannelIDs.includes(message.channel.id) || message.content.startsWith(BotPrefix) || !message.content) return;
 
 		const conversationLog: CreateChatCompletionRequestMessage[] = [
 			{
@@ -34,7 +34,7 @@ export class UserEvent extends Listener {
 			});
 		});
 
-		const completion = await createCompletion({ messages: conversationLog, model: 'gpt-3.5-turbo', max_tokens: 1000 });
+		const completion = await createCompletion({ messages: conversationLog, model: 'gpt-3.5-turbo' });
 
 		message.reply({
 			content: completion.choices[0].message.content?.replace('skittle-chan:', '') || 'Hey',
