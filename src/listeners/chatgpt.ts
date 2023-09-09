@@ -34,7 +34,7 @@ export class UserEvent extends Listener {
 			});
 		});
 
-		const completion = await createCompletion({ messages: conversationLog, model: 'gpt-3.5-turbo', max_tokens: 100 });
+		const completion = await createCompletion({ messages: conversationLog, model: 'gpt-3.5-turbo', max_tokens: 1000 });
 
 		message.reply({
 			content: completion.choices[0].message.content?.replace('skittle-chan:', '') || 'Hey',
