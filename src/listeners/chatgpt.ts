@@ -1,7 +1,7 @@
 import { ApplyOptions } from '@sapphire/decorators';
 import { Events, Listener } from '@sapphire/framework';
 import { type Message } from 'discord.js';
-import { BotPrefix, ChannelIDs, ModifiedSystemPrompt } from '#constants';
+import { BotPrefix, ChannelIDs, FriendlySystemPrompt } from '#constants';
 import { createCompletion } from '#lib/openai';
 import type { CreateChatCompletionRequestMessage } from 'openai/resources/chat/completions';
 
@@ -13,7 +13,7 @@ export class UserEvent extends Listener {
 		const conversationLog: CreateChatCompletionRequestMessage[] = [
 			{
 				role: 'system',
-				content: ModifiedSystemPrompt
+				content: FriendlySystemPrompt
 			}
 		];
 
@@ -34,7 +34,7 @@ export class UserEvent extends Listener {
 			});
 		});
 
-		const completion = await createCompletion({ messages: conversationLog, model: 'gpt-3.5-turbo', max_tokens: 50 });
+		const completion = await createCompletion({ messages: conversationLog, model: 'gpt-3.5-turbo', max_tokens: 100 });
 
 		message.reply({
 			content: completion.choices[0].message.content?.replace('skittle-chan:', '') || 'Hey',
