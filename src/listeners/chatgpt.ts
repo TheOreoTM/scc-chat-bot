@@ -1,7 +1,7 @@
 import { ApplyOptions } from '@sapphire/decorators';
 import { Events, Listener } from '@sapphire/framework';
 import { type Message } from 'discord.js';
-import { BotPrefix, ChannelIDs, UnfilteredSystemPropt } from '#constants';
+import { BotPrefix, ChannelIDs, FriendlySystemPrompt } from '#constants';
 import { createCompletion } from '#lib/openai';
 import type { CreateChatCompletionRequestMessage } from 'openai/resources/chat/completions';
 
@@ -13,7 +13,7 @@ export class UserEvent extends Listener {
 		const conversationLog: CreateChatCompletionRequestMessage[] = [
 			{
 				role: 'system',
-				content: UnfilteredSystemPropt
+				content: FriendlySystemPrompt
 			}
 		];
 
