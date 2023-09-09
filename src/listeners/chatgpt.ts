@@ -20,6 +20,7 @@ export class UserEvent extends Listener {
 		await message.channel.sendTyping();
 
 		const prevMessages = (await message.channel.messages.fetch({ limit: 8 })).reverse();
+		console.log(message.author.username);
 
 		prevMessages.forEach((msg) => {
 			if (msg.content.startsWith(BotPrefix)) return;
@@ -29,7 +30,7 @@ export class UserEvent extends Listener {
 
 			conversationLog.push({
 				role: isBot ? 'assistant' : 'user',
-				name: isBot ? 'skittle-chan' : message.author.username,
+				name: isBot ? 'skittle-chan' : msg.author.username,
 				content: msg.content.slice(0, 200)
 			});
 		});
