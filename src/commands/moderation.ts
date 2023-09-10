@@ -1,6 +1,7 @@
 import { createModeration } from '#lib/openai';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Command } from '@sapphire/framework';
+import { PermissionFlagsBits } from 'discord.js';
 
 @ApplyOptions<Command.Options>({
 	description: 'A basic slash command'
@@ -12,6 +13,7 @@ export class UserCommand extends Command {
 				.setName(this.name)
 				.setDescription(this.description)
 				.addStringOption((option) => option.setName('input').setDescription('The text you want to moderate').setRequired(true))
+				.setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
 		);
 	}
 
